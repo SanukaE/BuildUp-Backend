@@ -4,7 +4,7 @@
   "description": "This is the official backend server for BuildUp",
   "main": "server.js",
   "scripts": {
-    "build": "node server.js",
+    "build": "npm install",
     "start": "node ."
   },
   "author": "ItzSanuka",
