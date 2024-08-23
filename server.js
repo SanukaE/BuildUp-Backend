@@ -20,7 +20,7 @@ async function connectToDatabase() {
 const app = express();
 const port = process.env.PORT || 10000;
 
-app.use(express.json({ limit: "1MB" }));
+app.use(express.json({ limit: "10MB" }));
 app.use(cors({
     allowedHeaders: "Content-Type",
     methods: ["POST", "GET"],
