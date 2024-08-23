@@ -4,7 +4,8 @@
   "description": "This is the official backend server for BuildUp",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node server.js",
+    "start": "node ."
   },
   "author": "ItzSanuka",
   "license": "ISC",
