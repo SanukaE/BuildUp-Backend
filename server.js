@@ -20,7 +20,7 @@ async function connectToDatabase() {
 }
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT | 10000;
 
 app.get("/requests/create", async function(req, res) {
     await connectToDatabase();
@@ -37,6 +37,6 @@ app.get("/requests/create", async function(req, res) {
     }
 });
 
-app.listen(port, function() {
-    console.log(`Listening on ${port}`);
+app.listen(port, "0.0.0.0", function() {
+    console.log(`Listening on http://0.0.0.0:${port}`);
 });
