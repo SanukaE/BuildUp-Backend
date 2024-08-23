@@ -1,0 +1,16 @@
+{
+  "name": "buildup-backend",
+  "version": "1.0.0",
+  "description": "This is the official backend server for BuildUp",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ItzSanuka",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0"
+  }
+}
