@@ -20,7 +20,7 @@ async function connectToDatabase() {
 const app = express();
 const port = process.env.PORT || 10000;
 
-app.use(express.json());
+app.use(express.json({ limit: "1MB" }));
 app.use(cors({
     allowedHeaders: "Content-Type",
     methods: ["POST", "GET"],
@@ -32,13 +32,14 @@ app.post("/requests/create", async function(req, res) {
 
     try {
         await collection.insertOne(req.body);
-        await client.close();
 
         res.status(200).send("Request added to database.");
     } catch(error) {
         console.error("Error when creating new request:", error.message);
 
         res.status(500).send("Request failed to be added to database.");
+    } finally {
+        await client.close();
     }
 });
 
