@@ -1,8 +1,6 @@
 import express from "express";
 import { MongoClient } from "mongodb";
-import dotenv from "dotenv";
-
-dotenv.config();
+import cors from "cors";
 
 const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri);
@@ -21,6 +19,9 @@ async function connectToDatabase() {
 
 const app = express();
 const port = process.env.PORT || 10000;
+
+app.use(cors());
+app.use(express.json());
 
 app.post("/requests/create", async function(req, res) {
     await connectToDatabase();
