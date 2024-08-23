@@ -20,8 +20,12 @@ async function connectToDatabase() {
 const app = express();
 const port = process.env.PORT || 10000;
 
-app.use(cors());
 app.use(express.json());
+app.use(cors({
+    allowedHeaders: "Content-Type",
+    methods: ["POST", "GET"],
+    origin: "*"
+}));
 
 app.post("/requests/create", async function(req, res) {
     await connectToDatabase();
