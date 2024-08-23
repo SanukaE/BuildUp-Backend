@@ -20,9 +20,9 @@ async function connectToDatabase() {
 }
 
 const app = express();
-const port = process.env.PORT | 10000;
+const port = process.env.PORT || 10000;
 
-app.get("/requests/create", async function(req, res) {
+app.post("/requests/create", async function(req, res) {
     await connectToDatabase();
 
     try {
