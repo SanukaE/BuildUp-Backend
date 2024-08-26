@@ -36,7 +36,8 @@ await connectToDatabase();
 
 app.post("/requests/create", async function(req, res) {
     try {
-        const newRequest = req.body;
+        const newRequest = JSON.parse(req.body);
+        console.log("Value:", req.body, "newRequest:", newRequest);
 
         await collection.insertOne(newRequest);
         res.send("Request added to database.");
