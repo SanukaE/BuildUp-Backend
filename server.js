@@ -1,7 +1,7 @@
 import express from "express";
 import { MongoClient } from "mongodb";
 import cors from "cors";
-import emailjs from "@emailjs/nodejs";
+import emailjs from "@emailjs/browser";
 
 const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri);
