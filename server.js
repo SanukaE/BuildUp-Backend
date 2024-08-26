@@ -1,6 +1,7 @@
 import express from "express";
 import { MongoClient } from "mongodb";
 import cors from "cors";
+import emailjs from "@emailjs/nodejs";
 
 const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri);
@@ -10,6 +11,8 @@ async function connectToDatabase() {
     try {
         await client.connect();
         const database = client.db("BuildUp");
+        console.log("Connected to database!");
+
         collection = database.collection("requests");
     } catch(error) {
         console.error("Error when trying to connect to DB:", error.message);
@@ -27,22 +30,41 @@ app.use(cors({
     origin: "*"
 }));
 
+emailjs.init({ privateKey: process.env.PRIVATE_KEY, publicKey: process.env.PUBLIC_KEY });
+
+await connectToDatabase();
+
 app.post("/requests/create", async function(req, res) {
-    await connectToDatabase();
-
     try {
-        await collection.insertOne(req.body);
+        const newRequest = req.body;
 
-        res.status(200).send("Request added to database.");
+        await collection.insertOne(newRequest);
+        res.send("Request added to database.");
+
+        await emailjs.send("service_9yknyip", "template_baqrpdl", newRequest);
     } catch(error) {
         console.error("Error when creating new request:", error.message);
 
-        res.status(500).send("Request failed to be added to database.");
-    } finally {
-        await client.close();
+        res.send("Request failed to be added to database.");
     }
 });
 
 app.listen(port, function() {
     console.log(`Listening on ${port}`);
+});
+
+client.on('connectionClosed', async function(event) {
+    console.log("Database connection closed. Attempting to reconnect...");
+    await connectToDatabase();
+});
+
+client.on('error', async function(error) {
+    console.error("Database connection error:", error.message);
+    await connectToDatabase();
+});
+
+process.on('SIGINT', async () => {
+    console.log('Closing database connection.');
+    await client.close();
+    process.exit(0);
 });
