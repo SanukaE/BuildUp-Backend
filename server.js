@@ -50,7 +50,8 @@ app.post("/requests/create", async function(req, res) {
             design_id: newRequest.designID
         };
 
-        await emailjs.send("service_9yknyip", "template_baqrpdl", emailParams);
+        const emailRes = await emailjs.send("service_9yknyip", "template_baqrpdl", emailParams);
+        console.log("Email Status:", emailRes.status, "\nEmail Message:", emailRes.text);
     } catch(error) {
         console.error("Error when creating new request:", error.message);
 
