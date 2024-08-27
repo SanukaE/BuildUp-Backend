@@ -20,11 +20,6 @@ async function connectToDatabase() {
     }
 }
 
-async function sendEmail(templateID, emailParams) {
-    const emailRes = await emailjs.send("service_9yknyip", templateID, emailParams);
-    console.log("Email Status:", emailRes.status, "\nEmail Message:", emailRes.text);
-}
-
 const app = express();
 const port = process.env.PORT || 10000;
 
@@ -44,7 +39,6 @@ app.post("/requests/create", async function(req, res) {
         const newRequest = req.body;
 
         await collection.insertOne(newRequest);
-        res.send("Request added to database.");
 
         const emailParams = {
             email: newRequest.email,
@@ -55,10 +49,12 @@ app.post("/requests/create", async function(req, res) {
             design_id: newRequest.designID
         };
 
-        await sendEmail("template_baqrpdl", emailParams);
+        const emailjsRes = await emailjs.send("service_9yknyip", "template_baqrpdl", emailParams);
+        console.log(`Email status: ${emailjsRes.status} \nEmail Text: ${emailjsRes.text}`);
+
+        res.send("Request added to database.");
     } catch(error) {
         console.error("Error when creating new request:", error.message);
-
         res.send("Request failed to be added to database.");
     }
 });
