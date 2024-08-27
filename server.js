@@ -1,8 +1,11 @@
 import express from "express";
 import { MongoClient } from "mongodb";
 import cors from "cors";
-import emailjs from "@emailjs/browser";
+import fs from "fs";
+import nodemailer from "nodemailer";
+import handlebars from "handlebars";
 
+//Setting up Database (MongoDB)
 const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri);
 let collection;
@@ -20,6 +23,7 @@ async function connectToDatabase() {
     }
 }
 
+//Setting up express
 const app = express();
 const port = process.env.PORT || 10000;
 
@@ -30,7 +34,37 @@ app.use(cors({
     origin: "*"
 }));
 
-emailjs.init({ privateKey: process.env.PRIVATE_KEY, publicKey: process.env.PUBLIC_KEY });
+//Setting up mail service (nodemailer)
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "no.reply.buildup@gmail.com",
+        pass: process.env.MAIL_PASSWORD
+    }
+});
+
+function loadEmailTemplate(fileName, values) {
+    const filePath = `./assets/emailTemplates/${fileName}.html`;
+    const source = fs.readFileSync(filePath, "utf-8").toString();
+    const template = handlebars.compile(source);
+    return template(values);
+}
+
+function sendMail(mailParams, templateName, receiversEmail, subject) {
+    const filledHTML = loadEmailTemplate(templateName, mailParams);
+
+    const mailOptions = {
+        from: "no.reply.buildup@gmail.com",
+        to: receiversEmail,
+        subject: subject,
+        html: filledHTML
+    };
+
+    transporter.sendMail(mailOptions, function(error) {
+        if(error)
+            console.error("Error when sending an email:", error.message);
+    });
+}
 
 await connectToDatabase();
 
@@ -47,15 +81,14 @@ app.post("/requests/create", async function(req, res) {
             address: newRequest.address,
             phone_no: newRequest.phoneNo,
             design_id: newRequest.designID
-        };
+        };        
 
-        const emailjsRes = await emailjs.send("service_9yknyip", "template_baqrpdl", emailParams);
-        console.log(`Email status: ${emailjsRes.status} \nEmail Text: ${emailjsRes.text}`);
+        sendMail(emailParams, "newRequest", newRequest.email, "We have received your request!");
 
-        res.send("Request added to database.");
+        res.send("Finished");
     } catch(error) {
         console.error("Error when creating new request:", error.message);
-        res.send("Request failed to be added to database.");
+        res.send("Incomplete");
     }
 });
 
