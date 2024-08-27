@@ -36,13 +36,21 @@ await connectToDatabase();
 
 app.post("/requests/create", async function(req, res) {
     try {
-        const newRequest = JSON.parse(req.body);
-        console.log("Value:", req.body, "newRequest:", newRequest);
+        const newRequest = req.body;
 
         await collection.insertOne(newRequest);
         res.send("Request added to database.");
 
-        await emailjs.send("service_9yknyip", "template_baqrpdl", newRequest);
+        const emailParams = {
+            email: newRequest.email,
+            first_name: newRequest.firstName,
+            last_name: newRequest.lastName,
+            address: newRequest.address,
+            phone_no: newRequest.phoneNo,
+            design_id: newRequest.designID
+        };
+
+        await emailjs.send("service_9yknyip", "template_baqrpdl", emailParams);
     } catch(error) {
         console.error("Error when creating new request:", error.message);
 
