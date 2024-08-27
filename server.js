@@ -20,6 +20,11 @@ async function connectToDatabase() {
     }
 }
 
+async function sendEmail(templateID, emailParams) {
+    const emailRes = await emailjs.send("service_9yknyip", templateID, emailParams);
+    console.log("Email Status:", emailRes.status, "\nEmail Message:", emailRes.text);
+}
+
 const app = express();
 const port = process.env.PORT || 10000;
 
@@ -50,8 +55,7 @@ app.post("/requests/create", async function(req, res) {
             design_id: newRequest.designID
         };
 
-        const emailRes = await emailjs.send("service_9yknyip", "template_baqrpdl", emailParams);
-        console.log("Email Status:", emailRes.status, "\nEmail Message:", emailRes.text);
+        await sendEmail("template_baqrpdl", emailParams);
     } catch(error) {
         console.error("Error when creating new request:", error.message);
 
