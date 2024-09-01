@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BuildUp Staff Registration</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #e0e0e0;
+        background-color: #121212;
+      }
+      .custom-shadow {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      .highlight-text {
+        background-color: #2c2c2c;
+        border-left: 4px solid #03dac6;
+        padding: 15px;
+        margin-bottom: 20px;
+      }
+      .card {
+        background-color: #1e1e1e;
+        border: none;
+      }
+      .card-title {
+        color: #03dac6;
+      }
+      a {
+        color: #bb86fc;
+      }
+      a:hover {
+        color: #9865f5;
+      }
+      .alert-warning {
+        background-color: #332d00;
+        border-color: #665800;
+        color: #ffd600;
+      }
+      .alert-info {
+        background-color: #002233;
+        border-color: #004466;
+        color: #33bbff;
+      }
+      .footer-text {
+        color: #03dac6;
+      }
+      .header-image {
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container my-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card custom-shadow mb-4">
+            <img
+              src="../images/Banner.jpg"
+              alt="Modern house exterior"
+              class="header-image"
+            />
+            <div class="card-body">
+              <h1 class="card-title mb-4">
+                Welcome to BuildUp, {{first_name}}!
+              </h1>
+              <p class="lead">
+                Your staff account has been successfully created.
+              </p>
+              <div class="highlight-text">
+                <p class="mb-0">
+                  We're excited to have you join our team. Here are your login
+                  credentials:
+                </p>
+                <p class="mb-0"><strong>Email:</strong> {{email}}</p>
+                <p class="mb-0"><strong>Password:</strong> {{password}}</p>
+              </div>
+              <p>
+                If you have any issues accessing your account, please contact
+                our IT support team or send an email to
+                <a href="mailto:support@buildup.com">Support@BuildUp.com</a>.
+              </p>
+            </div>
+          </div>
+
+          <div class="card custom-shadow mb-4">
+            <div class="card-body">
+              <h2 class="card-title mb-3">Next Steps:</h2>
+              <ol>
+                <li>
+                  Visit our staff portal at
+                  <a
+                    href="https://staff.buildup.com"
+                    target="_blank"
+                    rel="noopener"
+                    class="text-decoration-none"
+                    >https://staff.buildup.com</a
+                  >
+                </li>
+                <li>Log in using your email and password provided above</li>
+                <li>Welcome to the BuildUp Dashboard!</li>
+              </ol>
+            </div>
+          </div>
+
+          <p class="mt-4">
+            If you have any questions or need assistance, please don't hesitate
+            to reach out to your supervisor or the HR department.
+          </p>
+
+          <p class="mt-4">We look forward to working with you!</p>
+
+          <p>Best regards,<br />The BuildUp HR Team</p>
+
+          <div class="alert alert-warning mt-4" role="alert">
+            <p class="mb-0 font-italic">
+              This email contains sensitive information. Please do not forward
+              or share this email. If you believe you received this in error,
+              please contact our IT security team immediately at
+              <a href="mailto:security@buildup.com" class="alert-link"
+                >Security@BuildUp.com</a
+              >.
+            </p>
+          </div>
+
+          <div class="alert alert-info mt-4" role="alert">
+            <p class="mb-0">
+              Remember to familiarize yourself with our
+              <a
+                href="https://buildup.great-site.net/privacy"
+                target="_blank"
+                rel="noopener"
+                class="alert-link"
+                >data protection and confidentiality policies</a
+              >. Your compliance is crucial in maintaining the security and
+              integrity of our organization.
+            </p>
+          </div>
+
+          <div class="alert alert-success mt-4" role="alert">
+            <p class="mb-0">
+              BuildUp acknowledges the traditional owners and custodians of the
+              land throughout Australia and recognizes their continuing
+              connection to land, water, and community. We pay our respects to
+              the people, the cultures, and the elders past, present, and
+              emerging.
+            </p>
+          </div>
+
+          <p class="text-center mt-4 footer-text">Made with ❤ by ItzSanuka</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

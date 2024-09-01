@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BuildUp Housing Request</title>
+    <title>BuildUp Housing Request Declined</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -20,7 +20,7 @@
       }
       .highlight-text {
         background-color: #2c2c2c;
-        border-left: 4px solid #bb86fc;
+        border-left: 4px solid #cf6679;
         padding: 15px;
         margin-bottom: 20px;
       }
@@ -29,7 +29,7 @@
         border: none;
       }
       .card-title {
-        color: #bb86fc;
+        color: #cf6679;
       }
       a {
         color: #03dac6;
@@ -42,13 +42,13 @@
         border-color: #665800;
         color: #ffd600;
       }
-      .alert-success {
-        background-color: #003300;
-        border-color: #006600;
-        color: #00cc00;
+      .alert-info {
+        background-color: #002233;
+        border-color: #004466;
+        color: #33bbff;
       }
       .footer-text {
-        color: #bb86fc;
+        color: #cf6679;
       }
       .header-image {
         width: 100%;
@@ -72,14 +72,18 @@
             <div class="card-body">
               <h1 class="card-title mb-4">Hello {{first_name}},</h1>
               <p class="lead">
-                Your email has been used to request a house in:
+                We regret to inform you that your request has been declined.
               </p>
               <div class="highlight-text">
-                <p class="mb-0 font-italic">{{address}}</p>
+                <p class="mb-0 font-italic">
+                  Unfortunately, we are unable to proceed with your housing
+                  request for {{address}} at this time.
+                </p>
               </div>
               <p>
-                If this wasn't you please get in touch with us immediately by
-                sending an email to
+                We understand this may be disappointing news. If you would like
+                more information about why your request was declined or to
+                discuss alternative options, please contact our support team at
                 <em
                   ><a
                     href="mailto:support@buildup.com"
@@ -89,16 +93,15 @@
                 >
               </p>
               <p>
-                If this was you great! There is nothing left for you to do. A
-                staff member will email you for confirmation and verification so
-                please be alert.
+                We encourage you to review our eligibility criteria and consider
+                reapplying in the future if your circumstances change.
               </p>
             </div>
           </div>
 
           <div class="card custom-shadow mb-4">
             <div class="card-body">
-              <h2 class="card-title mb-3">Information Used for Request:</h2>
+              <h2 class="card-title mb-3">Your Request Details:</h2>
               <div class="highlight-text">
                 <p class="mb-0">
                   <strong>Full Name:</strong> {{first_name}} {{last_name}}<br />
@@ -112,15 +115,7 @@
           </div>
 
           <p class="mt-4">
-            You agreed with our
-            <a
-              href="https://buildup.great-site.net/terms"
-              target="_blank"
-              rel="noopener"
-              class="text-decoration-none"
-              >TOS</a
-            >
-            &amp;
+            Your privacy is important to us. Please review our
             <a
               href="https://buildup.great-site.net/privacy"
               target="_blank"
@@ -128,29 +123,26 @@
               class="text-decoration-none"
               >Privacy Policy</a
             >
-            by continuing to use our service.
+            for information on how we handle your data.
           </p>
 
-          <p class="mt-4">Best wishes,<br />BuildUp team</p>
+          <p class="mt-4">Best regards,<br />The BuildUp Team</p>
 
           <div class="alert alert-warning mt-4" role="alert">
             <p class="mb-0 font-italic">
-              This is a computer-generated email. Replies sent to this email
-              will not be responded to. If you wish to contact us please do so
-              using the email
+              This is an automated email. Please do not reply directly to this
+              message. For any inquiries, please contact us at
               <a href="mailto:support@buildup.com" class="alert-link"
                 >Support@BuildUp.com</a
               >.
             </p>
           </div>
 
-          <div class="alert alert-success mt-4" role="alert">
+          <div class="alert alert-info mt-4" role="alert">
             <p class="mb-0">
-              We acknowledges the traditional owners and custodians of the
-              country throughout Australia and acknowledges their continuing
-              connection to land, water, and community. We pay our respects to
-              the people, the cultures, and the elders past, present, and
-              emerging.
+              If you believe this decision was made in error or you have
+              additional information that may affect your application, please
+              don't hesitate to reach out to our support team.
             </p>
           </div>
 
