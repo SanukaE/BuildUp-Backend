@@ -31,7 +31,7 @@ app.use(express.json());
 app.use(
   cors({
     allowedHeaders: 'Content-Type',
-    methods: ['POST', 'GET'],
+    methods: ['POST', 'GET', 'PUT', 'DELETE'],
     origin: '*',
   })
 );
