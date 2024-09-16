@@ -114,7 +114,7 @@ router.put('/decline/:id', async function (req, res) {
   }
 });
 
-router.delete('/delete/:id', async function (req, res) {
+router.delete('/:id', async function (req, res) {
   try {
     const requestID = req.params.id;
     await Request.findByIdAndDelete(requestID);
